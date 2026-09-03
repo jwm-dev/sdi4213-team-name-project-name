@@ -13,9 +13,9 @@ with full CRUD operations.
 
 | Member | GitHub | Initial Role |
 |---|---|---|
-| Jeffrey W. Gregory | [@jwm-dev](https://github.com/jwm-dev) | Repo & Release Manager |
-| Vance Reed | [@virtualvance](https://github.com/virtualvance) | QA & Test Lead |
-| Ryan Kendrick | [@rmkoupi](https://github.com/rmkoupi) | Infrastructure & CI/CD Lead |
+| Jeffrey W. Gregory | [@jwm-dev](https://github.com/jwm-dev) | Code & Architecture Lead |
+| Vance Reed | [@virtualvance](https://github.com/virtualvance) | Project Management & Domain SME |
+| Ryan Kendrick | [@rmkoupi](https://github.com/rmkoupi) | Team Morale & Support |
 
 Everyone writes application code; the role marks who is accountable for that
 axis of the project.

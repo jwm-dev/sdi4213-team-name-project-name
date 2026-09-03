@@ -77,9 +77,9 @@ GitHub Actions · Docker on Render or Fly.io free tier.
 
 | Member | Role | Accountable for |
 |---|---|---|
-| Jeffrey W. Gregory (@jwm-dev) | Repo & Release Manager | Repo administration, branch protection, releases, merges to `main` |
-| Vance Reed (@virtualvance) | QA & Test Lead | Test suite health, coverage of new features, review sign-off |
-| Ryan Kendrick (@rmkoupi) | Infrastructure & CI/CD Lead | Actions pipeline, Docker, deployment environment |
+| Jeffrey W. Gregory (@jwm-dev) | Code & Architecture Lead | Application design, code quality, repo administration, merges to `main` |
+| Vance Reed (@virtualvance) | Project Management & Domain SME | Planning, project board, fuel/energy domain requirements |
+| Ryan Kendrick (@rmkoupi) | Team Morale & Support | Keeping the team unblocked, documentation upkeep, reviews |
 
 Everyone writes application code; roles assign accountability, not exclusive
 ownership.
