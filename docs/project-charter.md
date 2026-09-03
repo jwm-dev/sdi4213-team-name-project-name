@@ -1,6 +1,7 @@
 # Project Charter — Fuel Inventory Management System
 
 **Team:** name
+**Members:** Jeffrey W. Gregory (@jwm-dev) · Vance Reed (@virtualvance) · Ryan Kendrick (@rmkoupi)
 **Course:** SDI 4213/5213 — DevOps
 **Date:** 2026-09-03
 **Repository:** https://github.com/jwm-dev/sdi4213-team-name-project-name
@@ -24,6 +25,25 @@ CI/CD, containerized deployment).
    end of semester.
 5. Practice a consistent branch-and-pull-request workflow across all team
    members.
+
+## Intended Users
+
+- **Site operators**, who record fuel received and dispensed at their site.
+- **Inventory managers**, who need current stock levels and capacity headroom
+  across all sites to plan reorders and transfers.
+- **Company management / auditors**, who need a trustworthy record of what
+  fuel is held where.
+
+## Key Features
+
+1. Create, read, update, and delete fuel stock records (fuel type, quantity,
+   capacity, last updated) per site.
+2. Manage sites (create/read/update/delete) and list all stock at a site.
+3. Interactive, always-current API documentation at `/docs`.
+4. Validation guardrails (e.g., quantity cannot exceed capacity; known fuel
+   types only).
+5. Deployed, publicly reachable instance backed by an automated test-and-build
+   pipeline.
 
 ## Scope
 
