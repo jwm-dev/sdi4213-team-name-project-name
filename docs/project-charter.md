@@ -101,6 +101,17 @@ ownership.
 | Midterm | Full CRUD on FuelStock, tested, CI running |
 | End of semester | Containerized, deployed live, final demo |
 
+## Risks and Challenges
+
+| Risk | Impact | How we handle it |
+|---|---|---|
+| Three-person team with uneven availability week to week | A missed Friday milestone costs 10% per day and is dead after 3 days | Split each week's milestone into issues on Monday; every member owns one branch and one PR per week; reviews answered within two days |
+| Work landing directly on `main` or unreviewed merges | Breaks the workflow the course grades and risks shipping broken code | Branch protection on `main` (require one review); the loop in `docs/team-workflow.md` is the only path in |
+| SQLite to PostgreSQL migration at containerization | Schema or query differences surface late, during the Docker/Compose weeks | Access the database only through SQLAlchemy from the start; run the test suite against PostgreSQL in Compose before the midterm |
+| Free-tier hosting limits (sleep on idle, cold starts, quota) | Live demo or health checks fail at the wrong moment | Keep the app small and stateless; add a `/health` endpoint early; rehearse the demo against the deployed URL, with a local Compose fallback |
+| CI/CD supply chain: mutable action tags, secrets in workflows | A poisoned `@v1` tag or leaked token compromises the pipeline | Pin GitHub Actions to a commit SHA, use least-privilege `permissions:` blocks, keep secrets in repository secrets and never in code |
+| Scope creep beyond CRUD (auth, scheduling, UI) | Later DevOps milestones (IaC, Kubernetes) get starved of time | Charter scope is the contract; new ideas go to the Backlog column and are revisited only after the midterm checkpoint |
+
 ## Success Criteria
 
 The project succeeds if the API is deployed and publicly reachable, CRUD
