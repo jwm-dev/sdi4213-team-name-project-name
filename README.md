@@ -41,3 +41,7 @@ axis of the project.
 
 - **Week 1:** Project setup and charter — README, charter, folder structure,
   and initial issues in place.
+
+## Team Workflow
+
+Our team workflow is documented in [docs/team-workflow.md](docs/team-workflow.md).
