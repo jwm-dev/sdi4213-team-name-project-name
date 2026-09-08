@@ -41,7 +41,45 @@ axis of the project.
 
 - **Week 1:** Project setup and charter — README, charter, folder structure,
   and initial issues in place.
+- **Week 2:** Branch-and-PR workflow established; `docs/team-workflow.md`.
+- **Week 3:** FastAPI skeleton with `/health` and `/fuelstocks` endpoints, pytest suite, local run instructions.
 
 ## Team Workflow
 
 Our team workflow is documented in [docs/team-workflow.md](docs/team-workflow.md).
+
+## Running Locally
+
+Requires Python 3.12+.
+
+```bash
+python3 -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+Then open http://localhost:8000/docs for the interactive API documentation.
+Binding to `0.0.0.0` makes the API reachable from other machines on your
+network (and later from inside a container); use `--host 127.0.0.1` to keep it
+local only.
+
+Endpoints so far:
+
+| Method | Path | Purpose |
+|---|---|---|
+| GET | `/health` | Liveness check, returns `{"status": "ok"}` |
+| GET | `/fuelstocks` | List fuel stock records |
+| POST | `/fuelstocks` | Create a record (`site_id`, `fuel_type`, `quantity_gallons`, `capacity_gallons`) |
+| GET | `/fuelstocks/{id}` | Fetch one record |
+
+Storage is in-memory for now; SQLite arrives in a later milestone.
+
+## Running the Tests
+
+```bash
+pytest
+```
+
+Tests live in `tests/` and use FastAPI's `TestClient`; no server needs to be running.
+`scripts/smoke.sh` starts the server on `0.0.0.0`, exercises the endpoints with
+`curl`, and stops it.
