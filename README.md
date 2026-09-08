@@ -43,6 +43,7 @@ axis of the project.
   and initial issues in place.
 - **Week 2:** Branch-and-PR workflow established; `docs/team-workflow.md`.
 - **Week 3:** FastAPI skeleton with `/health` and `/fuelstocks` endpoints, pytest suite, local run instructions.
+- **Week 4 (early):** GitHub Actions CI runs the test tiers on every PR via `make ci`.
 
 ## Team Workflow
 
@@ -50,7 +51,14 @@ Our team workflow is documented in [docs/team-workflow.md](docs/team-workflow.md
 
 ## Running Locally
 
-Requires Python 3.12+.
+Requires Python 3.12+ and `make` (on Windows: `winget install GnuWin32.Make`,
+or run the underlying commands shown by `make help`).
+
+```bash
+make run          # creates .venv, installs requirements.txt, serves on 0.0.0.0:8000 with reload
+```
+
+Without make:
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
@@ -80,10 +88,13 @@ Tests are tiered by what sits on the other end of the call:
 
 | Level | What it exercises | Command |
 |---|---|---|
-| L0 | In-process: model rules and routes via FastAPI's `TestClient`, no socket, no I/O | `pytest` (default) |
+| L0 | In-process: model rules and routes via FastAPI's `TestClient`, no socket, no I/O | `make test` (plain `pytest`) |
 | L1 | Needs a real dependency (database); arrives with SQLite | `pytest -m l1` |
-| L2 | Real HTTP against a uvicorn process the fixture starts on a free port | `pytest -m l2` |
+| L2 | Real HTTP against a uvicorn process the fixture starts on a free port | `make test-l2` |
 | L3 | The L2 suite pointed at an already-running or deployed instance | `BASE_URL=http://host:8000 pytest -m l2` |
+
+`make ci` runs L0 then L2; that is exactly what GitHub Actions runs on every
+pull request and push to `main` (`.github/workflows/ci.yml`).
 
 Unmarked tests are L0. `scripts/smoke.sh` is a shell version of L2 for a
 quick manual check: it starts the server on `0.0.0.0`, hits it with `curl`,
