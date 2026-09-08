@@ -73,6 +73,11 @@ CI/CD, containerized deployment).
 Python 3.12 · FastAPI · SQLite (→ PostgreSQL at containerization) · pytest ·
 GitHub Actions · Docker on Render or Fly.io free tier.
 
+FastAPI was selected because its type-driven validation, automatic `/docs` interface, async support, and small footprint fit a lightweight REST API well.
+SQLite provides a zero-configuration database for early development, while PostgreSQL gives us a production-ready database when the application is containerized and deployed.
+pytest integrates cleanly with FastAPI through fixtures and `TestClient`, making API behavior straightforward to test automatically.
+GitHub Actions keeps CI alongside the repository, while Docker and a Render or Fly.io free tier give the team a simple path from tested code to a publicly deployed service.
+
 ## Team and Roles
 
 | Member | Role | Accountable for |
