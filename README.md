@@ -76,10 +76,15 @@ Storage is in-memory for now; SQLite arrives in a later milestone.
 
 ## Running the Tests
 
-```bash
-pytest
-```
+Tests are tiered by what sits on the other end of the call:
 
-Tests live in `tests/` and use FastAPI's `TestClient`; no server needs to be running.
-`scripts/smoke.sh` starts the server on `0.0.0.0`, exercises the endpoints with
-`curl`, and stops it.
+| Level | What it exercises | Command |
+|---|---|---|
+| L0 | In-process: model rules and routes via FastAPI's `TestClient`, no socket, no I/O | `pytest` (default) |
+| L1 | Needs a real dependency (database); arrives with SQLite | `pytest -m l1` |
+| L2 | Real HTTP against a uvicorn process the fixture starts on a free port | `pytest -m l2` |
+| L3 | The L2 suite pointed at an already-running or deployed instance | `BASE_URL=http://host:8000 pytest -m l2` |
+
+Unmarked tests are L0. `scripts/smoke.sh` is a shell version of L2 for a
+quick manual check: it starts the server on `0.0.0.0`, hits it with `curl`,
+and stops it.
